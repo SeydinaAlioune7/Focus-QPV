@@ -1116,11 +1116,11 @@ main{height:calc(100vh - 58px)!important;gap:12px!important;padding:12px!importa
 .pill{border-radius:4px!important;background:#fff}
 h3.t{font:700 12px var(--body)!important;color:#6A7385!important}
 .tbl{border-radius:8px!important}
-th{font:600 12px var(--body)!important;letter-spacing:.02em!important;text-transform:none!important;color:#6A7385!important}
+th{font:600 12px var(--body)!important;letter-spacing:.02em!important;text-transform:none!important;color:#6A7385!important;z-index:10;position:sticky;top:0}
 tr:hover td,tr.on td{background:#EEF2F8!important}
 .lb text{font-family:"Source Sans 3",system-ui,sans-serif!important}
-.side>*{flex:none!important}.side{display:flex!important;flex-direction:column}.tbl{max-height:none!important;overflow:auto}
-.legend{left:12px!important;right:auto!important;top:auto!important;bottom:12px!important;max-width:210px!important;font-size:11.5px!important;padding:7px 10px!important;background:rgba(255,255,255,.92)!important;max-height:calc(100% - 90px);overflow:auto}
+.side>*{flex:none!important}.side{display:flex!important;flex-direction:column!important;overflow:hidden!important}.tbl{max-height:none!important;overflow:auto!important;flex:1 1 auto!important}
+.legend{left:12px!important;right:auto!important;top:auto!important;bottom:12px!important;max-width:210px!important;font-size:11.5px!important;padding:7px 10px!important;background:rgba(255,255,255,.98)!important;max-height:calc(100% - 90px);overflow:auto}
 .legend h3{cursor:pointer;display:flex;justify-content:space-between;gap:10px;margin:0!important}
 .legend h3::after{content:"Masquer";font-weight:600;text-transform:none;letter-spacing:0;color:#24406F}
 .legend.min h3::after{content:"Afficher"}
@@ -1165,7 +1165,7 @@ tr:hover td,tr.on td{background:#EEF2F8!important}
     <div><h2 id="tname">…</h2><div class="sub" id="tsub"></div></div>
     <div class="kpis" id="kpis"></div>
     <h3 class="t">Communes avec au moins un QPV <span class="sub" style="text-transform:none;letter-spacing:0;font-weight:400">· cliquer une ligne pour zoomer</span></h3>
-    <div class="tbl"><table><thead><tr><th data-s="n">Commune</th><th data-s="s" id="th-ind">Indicateur</th><th class="r" data-s="pp">Pop. en QPV</th><th class="r" data-s="pq">Parc en QPV</th><th class="r" data-s="t">Logts sociaux</th></tr></thead><tbody id="tb"></tbody></table></div>
+    <div class="tbl"><table><thead><tr><th data-s="n">Commune</th><th data-s="s" id="th-ind">Barre graphique</th><th class="r" data-s="s" id="th-ind-val">Valeur</th><th class="r" data-s="pp">Pop. en QPV</th><th class="r" data-s="pq">Parc en QPV</th><th class="r" data-s="t">Logts sociaux</th></tr></thead><tbody id="tb"></tbody></table></div>
   </div>
 </main>
 <div class="notes">
@@ -1296,11 +1296,11 @@ function panel(){const t=cur;const tot={};for(const k in IND){let a=0,c=0;for(co
  <div class="kpi"><div class="v">${pct(tot.vac[2])}</div><div class="l">vacants proposés à la location · ${fmt.format(tot.vac[0])} logts</div></div>
  <div class="kpi"><div class="v">${fmt.format(tot.att[0])}</div><div class="l">familles logées par ALS en 2025 · ${nf(tot.att[2])} pour 100 logts sociaux</div></div>
  <div class="kpi"><div class="v">${pct(attQ)}</div><div class="l">de ces attributions dans des communes ayant un QPV (${pct(parcQ)} du parc social y est situé)</div></div>`;
- document.getElementById('th-ind').textContent={pop:'Pop. en QPV',parc:'Parc en QPV',fg:'Passoires F/G',vac:'Vacants proposés',att:'Attrib. ALS /100'}[ind];
+ document.getElementById('th-ind').textContent='Barre graphique';document.getElementById('th-ind-val').textContent={pop:'% Pop. QPV',parc:'% Parc QPV',fg:'Passoires F/G',vac:'Vacants proposés',att:'Attrib. ALS /100',res:'Logts Réservés'}[ind]||'Valeur';
  const key={n:i=>U.n[i],s:i=>val(i)??-1,pp:i=>share(i)??-1,pq:i=>IND.parc.v(i)??-1,t:i=>S.tot[i]}[sortK];
  rows.sort((a,b)=>{const x=key(a),y=key(b);return (typeof x==='string'?x.localeCompare(y,'fr'):x-y)*sortD});
  const mx=IND[ind].br[4]*1.5,o=v=>v===null?'n.d.':pct(v),oi=v=>v===null?'n.d.':((ind==='att'||ind==='res')?nf(v):pct(v));
- document.getElementById('tb').innerHTML=rows.map(i=>{const v=val(i);return `<tr data-i="${i}"><td>${U.n[i]}</td><td><div class="bar"><i style="width:${Math.min(v??0,mx)/mx*80}px;background:${colv(cls(v))}"></i>${oi(v)}</div></td><td class="r">${o(share(i))}</td><td class="r">${o(IND.parc.v(i))}</td><td class="r">${fmt.format(S.tot[i])}</td></tr>`}).join('')||'<tr><td colspan="5">Aucune commune avec QPV</td></tr>'}
+ document.getElementById('tb').innerHTML=rows.map(i=>{const v=val(i);return `<tr data-i="${i}"><td>${U.n[i]}</td><td><div class="bar"><i style="width:${Math.min(v??0,mx)/mx*80}px;background:${colv(cls(v))}"></i></div></td><td class="r">${oi(v)}</td><td class="r">${o(share(i))}</td><td class="r">${o(IND.parc.v(i))}</td><td class="r">${fmt.format(S.tot[i])}</td></tr>`}).join('')||'<tr><td colspan="6">Aucune commune avec QPV</td></tr>'}
 document.querySelectorAll('th[data-s]').forEach(th=>th.onclick=()=>{const k=th.dataset.s;sortD=sortK===k?-sortD:(k==='n'?1:-1);sortK=k;panel()});
 const tb=document.getElementById('tb');
 tb.addEventListener('mouseover',e=>{const r=e.target.closest('tr');if(r&&r.dataset.i)hl(+r.dataset.i)});
