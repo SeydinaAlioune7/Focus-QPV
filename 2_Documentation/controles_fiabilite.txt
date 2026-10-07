@@ -1,0 +1,34 @@
+Contrôles de fiabilité · 24 OK · 0 alerte(s) · 8 information(s)
+
+[OK    ] RPLS 2024              logements sociaux (communes codées) : outil 5 355 906 / source 5 355 949
+[OK    ] RPLS 2024              dont en QPV : outil 1 665 074 / source 1 665 074
+[OK    ] RPLS 2024              étiquettes F ou G : outil 147 256 / source 147 256
+[OK    ] RPLS 2024              logements vacants : outil 113 845 / source 113 847
+[INFO  ] RPLS 2024              16 027 logements sans code commune dans RPLS (non cartographiables  0.30 % du parc)
+[OK    ] RPLS 2024              cohérence par commune (QPV, F/G, vacants <= total) : 0 commune(s) incohérente(s) []
+[OK    ] RPLS 2024              43 logements à des codes commune sans contour (anciennes communes fusionnées)  soit 0.001 %
+[OK    ] Attributions 2025      familles logées (atlas) : outil 149 044 / source 149 318
+[INFO  ] Attributions 2025      274 familles rattachées à un code commune sans contour (Marseille sans arrondissement  communes fusionnées)
+[INFO  ] Population             population totale 67 411 542 · en QPV 5 931 940 (8.8 %)
+[OK    ] QPV 2024               1584 contours ANCT (référence : 1 584)
+[INFO  ] QPV 2024               1609 quartiers avec données Insee ; 42 sans contour et 17 contours sans données Insee, tous à Mayotte (codes Insee « M » de l'ancienne liste, contours ANCT « C » de la nouvelle)
+[OK    ] Portrait QPV           parts et taux entre 0 et 100 % : tous conformes
+[OK    ] Portrait QPV           tranches d'âge sommant à 100 % (±1,5) : 0 écart(s) []
+[OK    ] Réservations           bailleurs dans le fichier de consommation : outil 554 / source 554
+[OK    ] Réservations           stock restant identique à la source : 0 écart(s) []
+[INFO  ] Écoulement             45 bailleurs à plus de 30 ans (affichés « Plus de 30 ans ») : stock élevé et consommation quasi nulle, pas une erreur de calcul
+[INFO  ] Réservations           droits ANCOLS 2025 par type : Logts_ordi_DS livrés stock actif 1 918 · Logts ordi_Stock DS à livrer 4 148 · Logts ordi_Stock DU ancien 1 086 292 · Logts ordi_Stock DU neuf 79 400 · SCO_Stock DU neuf 12 679 · SCO_Stock DS à livrer 9 272 · SCO_Stock DS livré 9 272
+[INFO  ] Programmes             18 080 programmes placés sur 29 336 (303 923 logements réservés sur 778 835)
+[OK    ] Programmes             coordonnées en France : 0 hors emprise
+[OK    ] Gares                  2782 gares, 0 hors emprise []
+[OK    ] Gares                  0 doublon(s) nom + position
+[OK    ] Pôles d'emploi         28 communes de plus de 5 000 entreprises
+[OK    ] Zones d'emploi         306 zones (ZE2020 France entière : 306 hors Mayotte et Polynésie)
+[OK    ] Zones d'emploi         taux de chômage entre 4.3 et 21.2 % (302 zones renseignées, 4 sans taux)
+[OK    ] Zones d'emploi         logements sociaux (somme des zones) : outil 5 355 906 / source 5 355 949
+[OK    ] Zones d'emploi         familles logées 2025 (somme des zones) : outil 149 044 / source 149 318
+[OK    ] Zones d'emploi         population (somme des zones) : outil 67 411 542 / source 67 411 542
+[OK    ] Évolutions             parc 2024 par commune identique à la source : 0 écart(s) []
+[OK    ] Géolocalisation        logements dans le fichier géolocalisé : outil 5 355 891 / source 5 371 976
+[INFO  ] Géolocalisation        précision (en logements) : exacte 75.2 % · voie_approchee 10.0 % · non_trouve 6.4 % · centre_voie 3.9 % · numero_voisin 2.2 % · voie_approchee+centre_voie 1.7 % · voie_approchee+numero_voisin 0.6 %
+[OK    ] Géolocalisation        échantillon de 18 054 adresses : 0 hors de leur commune (marge 1 km)  soit 0.00 %
