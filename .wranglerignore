@@ -1,2 +1,6 @@
 3_Kit_mise_a_jour/*
 2_Documentation/*
+.git/*
+*.py
+index_backup_IDF.html
+.gitignore
